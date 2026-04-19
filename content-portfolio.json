@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Wemby Defensive Dashboard",
+    "meta": "2026 · NBA Analytics",
+    "img": "",
+    "link": "dashboards/wemby-defense.html",
+    "external": false
+  },
+  {
+    "title": "Shot Profile Explorer",
+    "meta": "2026 · NBA API",
+    "img": "",
+    "link": "dashboards/shot-profile.html",
+    "external": false
+  },
+  {
+    "title": "Team Matchup Dashboard",
+    "meta": "2026 · Opponent Splits",
+    "img": "",
+    "link": "dashboards/team-matchups.html",
+    "external": false
+  }
+]

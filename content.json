@@ -1,0 +1,30 @@
+{
+  "pageTitle": "Jimmy",
+  "name": "Jimmy",
+  "kicker": "Verified",
+  "followLabel": "Follow",
+  "followLink": "https://www.linkedin.com/",
+  "footerLeft": "© Jimmy · MMXXVI",
+  "footerRight": "Hand-thrown · one of one",
+  "heroImage": "",
+  "tabLabels": {
+    "work": "Work",
+    "portfolio": "Portfolio",
+    "ceramics": "Ceramics"
+  },
+  "theme": {
+    "bg": "#eef0e8",
+    "bg-2": "#e3e7d8",
+    "bg-3": "#d7dbc7",
+    "fg": "#1c1f18",
+    "fg-dim": "#55594c",
+    "fg-faint": "#828778",
+    "accent": "#4a6a3d",
+    "accent-2": "#7a9960",
+    "line": "rgba(28,31,24,0.08)",
+    "hero-bg": "#ffffff",
+    "hero-h": "360px",
+    "hero-opacity": "0.95",
+    "name-color": "#384507"
+  }
+}
