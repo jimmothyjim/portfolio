@@ -168,6 +168,34 @@
     .card-title { font-size: 15px; font-weight: 500; margin: 0 0 4px; color: var(--fg); }
     .card-meta { font-size: 12px; color: var(--fg-dim); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.03em; }
 
+    .section-header {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 40px;
+      letter-spacing: -0.01em;
+      margin: 0 0 20px;
+      color: var(--fg);
+    }
+
+    .skills-section { padding: 36px 40px 16px; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .skill-card {
+      background: var(--bg-2);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: background .15s;
+    }
+    .skill-card:hover { background: var(--bg-3); }
+    .skill-name { font-size: 14px; font-weight: 500; color: var(--fg); }
+    .skill-meta { font-size: 12px; color: var(--fg-dim); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.03em; }
+
     .worklist { display: flex; flex-direction: column; gap: 2px; }
     .work-row {
       display: grid;
@@ -212,7 +240,8 @@
       .hero-name { font-size: 20vw; }
       .work-row { grid-template-columns: 1fr 80px; }
       .work-row .loc { display: none; }
-      .hero-content, .actions, .section, .foot { padding-left: 20px; padding-right: 20px; }
+      .hero-content, .actions, .section, .skills-section, .foot { padding-left: 20px; padding-right: 20px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -231,8 +260,14 @@
   </div>
 
   <section class="section">
+    <h2 class="section-header">About Me</h2>
     <div class="tabs" id="tabs"></div>
     <div id="tabContent"><p>Loading…</p></div>
+  </section>
+
+  <section class="skills-section">
+    <h2 class="section-header">Skills</h2>
+    <div class="skills-grid" id="skillsGrid"><p>Loading…</p></div>
   </section>
 
   <footer class="foot">
@@ -337,16 +372,28 @@
     renderCurrentTab();
   }
 
+  function renderSkills(skills) {
+    const grid = document.getElementById('skillsGrid');
+    grid.innerHTML = skills.map(s => `
+      <div class="skill-card">
+        <span class="skill-name">${esc(s.name)}</span>
+        ${s.meta ? `<span class="skill-meta">${esc(s.meta)}</span>` : ''}
+      </div>
+    `).join('');
+  }
+
   Promise.all([
     fetch('./content.json').then(r => r.json()),
     fetch('./content-work.json').then(r => r.json()),
     fetch('./content-portfolio.json').then(r => r.json()),
-    fetch('./content-ceramics.json').then(r => r.json())
-  ]).then(([site, work, portfolio, ceramics]) => {
+    fetch('./content-ceramics.json').then(r => r.json()),
+    fetch('./content-skills.json').then(r => r.json())
+  ]).then(([site, work, portfolio, ceramics, skills]) => {
     state.tabs.work = work;
     state.tabs.portfolio = portfolio;
     state.tabs.ceramics = ceramics;
     initSite(site);
+    renderSkills(skills);
   }).catch(err => {
     console.error(err);
     document.getElementById('tabContent').innerHTML = '<p class="error-note">Could not load JSON content files.</p>';
